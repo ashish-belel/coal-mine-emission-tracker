@@ -13,7 +13,7 @@ public class EmissionService {
 
     double transportEmissions = 0;  //default 0 for electric
     if (request.getFuelType().equalsIgnoreCase("diesel")) {
-      transportEmissions = request.getTransportDistance() * EmissionFactors.DIESEL_TRANSPORT_CO2_PER_KM;
+      transportEmissions = request.getTransportDistance() * request.getCoalExtracted() * EmissionFactors.DIESEL_TRANSPORT_CO2_PER_KM;
     }
 
     double equipmentEmissions = request.getEquipmentHoursPerMonth() * EmissionFactors.EQUIPMENT_CO2_PER_HOUR;
