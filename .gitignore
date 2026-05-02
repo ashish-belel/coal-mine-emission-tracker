@@ -4,7 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-BACKEND_CONCEPTS.md
+PROJECT_STRUCTURE.md
+
+CONCEPTS.md
 logs/
 
 ### STS ###
