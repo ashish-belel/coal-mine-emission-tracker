@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenMine - Login</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <main class="login-container">
+    <section class="brand">
+      <!-- <div class="logo-circle"></div>
+      <h1>GreenMine</h1>
+      <p class="tagline">Carbon neutrality for coal mines</p> -->
+      <img src="assets/images/logo.png" alt="GreenMine Logo" class="logo-image">
+    </section>
+
+    <section class="form-section">
+      <input type="email" id="email" placeholder="Enter your email">
+      <input type="password" id="password" placeholder="Enter your password">
+      <p id="error-message" class="error"></p>
+      <button id="login-btn">Sign in</button>
+
+      <p class="register-prompt">
+        Don't have an account? <a id="register-link">Register</a>
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+
+</html>
