@@ -1,0 +1,342 @@
+:root {
+  --color-primary: #0F6E56; /* fresh medium green */
+  --color-primary-deep: #0B4F3F; /* deep dark green */
+  --color-background: #F5F8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-strong: #EBF6F1;
+  --color-error: #A32D2D;
+  --color-text-primary: #242A2F; /* charcoal gray */
+  --color-text-secondary: #56616C;
+  --color-border: #D4E3DA;
+  --border-radius-lg: 24px;
+  --border-radius-md: 16px;
+  --shadow: 0 24px 60px rgba(15, 110, 86, 0.12);
+  --transition: 0.25s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: #FFFFFF;
+  color: var(--color-text-primary);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.login-card {
+  width: min(520px, 100%);
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 110, 86, 0.12);
+  box-shadow: 0 24px 40px rgba(15, 110, 86, 0.08);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.brand {
+  text-align: center;
+  background: #FFFFFF;
+  padding: 24px 32px 16px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.brand-logo img {
+  max-width: 220px;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  min-height: 42px;
+  border: 1px solid rgba(15, 110, 86, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  border-color: rgba(15, 110, 86, 0.28);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: rgba(15, 110, 86, 0.28);
+}
+
+.theme-toggle-btn.minimal-switch {
+  padding: 6px 10px;
+  min-height: auto;
+  min-width: 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  gap: 0;
+  font-size: 1.2rem;
+  background: rgba(15, 110, 86, 0.08);
+  border: 1px solid rgba(15, 110, 86, 0.14);
+}
+
+.theme-toggle-btn.minimal-switch:hover {
+  background: rgba(15, 110, 86, 0.12);
+}
+
+.theme-toggle-btn.minimal-switch.active {
+  background: rgba(15, 110, 86, 0.2);
+  border-color: rgba(15, 110, 86, 0.28);
+}
+
+.brand-copy {
+  margin-top: 24px;
+}
+
+.brand-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  color: var(--color-primary);
+}
+
+.tagline {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.form-section {
+  padding: 32px 36px 40px;
+  display: grid;
+  gap: 18px;
+}
+
+.actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--color-surface-strong);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-section input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: #fff;
+  color: var(--color-text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-section input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(159, 225, 203, 0.24);
+}
+
+#forgot-password-link {
+  justify-self: end;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color var(--transition);
+}
+
+#forgot-password-link:hover {
+  color: var(--color-text-primary);
+}
+
+.error {
+  min-height: 20px;
+  color: var(--color-error);
+  font-size: 0.95rem;
+}
+
+#login-btn {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+}
+
+#login-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 18px 32px rgba(15, 110, 86, 0.16);
+}
+
+.register-prompt {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.register-prompt a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-prompt a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    border-radius: var(--border-radius-lg);
+  }
+
+  .form-section {
+    padding: 28px 24px 30px;
+  }
+
+  .brand {
+    padding: 30px 24px 20px;
+  }
+
+  .theme-toggle-btn.minimal-switch {
+    position: static;
+    width: auto;
+    height: auto;
+    min-height: 32px;
+    margin: 0;
+    display: inline-flex;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0F172A;
+    --color-surface: #111827;
+    --color-surface-strong: #111827;
+    --color-text-primary: #F8FAF9;
+    --color-text-secondary: #CBD5E1;
+    --color-border: #334155;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  }
+
+  .login-card {
+    background: #111827;
+    border: 1px solid rgba(71, 85, 105, 0.14);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  }
+
+  .brand {
+    background: #0F172A;
+  }
+
+  #login-btn {
+    background: var(--color-primary);
+    box-shadow: none;
+  }
+
+  #login-btn:hover {
+    box-shadow: 0 18px 32px rgba(15, 110, 86, 0.24);
+  }
+}
+
+body[data-theme="dark"] {
+  background: #0F172A;
+  color: var(--color-text-primary);
+}
+
+body[data-theme="dark"] .login-card {
+  background: #111827;
+  border: 1px solid rgba(71, 85, 105, 0.14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+body[data-theme="dark"] .brand {
+  background: #0F172A;
+}
+
+body[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #F8FAF9;
+  border-color: rgba(159, 225, 203, 0.16);
+}
+
+body[data-theme="dark"] .theme-toggle-btn.active {
+  background: var(--color-primary);
+}
+
+body[data-theme="dark"] .form-section input {
+  background: #0F172A;
+  color: #F8FAF9;
+  border-color: #475569;
+}
+
+body[data-theme="dark"] .status-pill {
+  background: rgba(159, 225, 203, 0.08);
+  color: #F8FAF9;
+}
+
+body[data-theme="dark"] .register-prompt,
+body[data-theme="dark"] #forgot-password-link {
+  color: #CBD5E1;
+}
+
+body[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+body[data-theme="dark"] .logo-dark {
+  display: block;
+}

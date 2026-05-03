@@ -6,30 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GreenMine - Login</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <main class="login-container">
-    <section class="brand">
-      <!-- <div class="logo-circle"></div>
-      <h1>GreenMine</h1>
-      <p class="tagline">Carbon neutrality for coal mines</p> -->
-      <img src="assets/images/logo.png" alt="GreenMine Logo" class="logo-image">
-    </section>
+    <div class="login-card">
+      <section class="brand">
+        <div class="brand-logo">
+          <!-- <img src="assets/images/GreenMine-lightmode-vertical.png" class="logo-light" alt="GreenMine Logo"> -->
+          <img src="assets/images/GreenMine-darkmode-vertical.png" class="logo-dark" alt="GreenMine Logo">
+        </div>
+      </section>
 
-    <section class="form-section">
-      <input type="email" id="email" placeholder="Enter your email">
-      <input type="password" id="password" placeholder="Enter your password">
-      <p id="error-message" class="error"></p>
-      <button id="login-btn">Sign in</button>
+      <section class="form-section">
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <div class="actions-row">
+          <button id="theme-toggle-btn" class="theme-toggle-btn minimal-switch" type="button" aria-label="Toggle dark mode">
+            <span class="toggle-icon">🌙</span>
+          </button>
+          <a id="forgot-password-link" href="#">Forgot Password?</a>
+        </div>
+        <p id="error-message" class="error"></p>
+        <button id="login-btn">Sign in</button>
 
-      <p class="register-prompt">
-        Don't have an account? <a id="register-link">Register</a>
-      </p>
-    </section>
+        <p class="register-prompt">
+          Don't have an account? <a id="register-link" href="#">Register</a>
+        </p>
+      </section>
+    </div>
   </main>
 
-  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/theme.js"></script>
 </body>
 
 </html>
