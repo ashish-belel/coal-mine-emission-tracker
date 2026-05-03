@@ -12,6 +12,9 @@ target/
 
 dataconnect/
 
+### Personal Notes & Internal Documentation ###
+CONCEPTS.md
+
 ### Compiled Java & Generated Files ###
 *.class
 *.jar
