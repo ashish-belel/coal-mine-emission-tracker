@@ -1,72 +1,20 @@
-public/assets/js/firebase-config.js
-
-node_modules/
-.DS_Store
 .env
 logs/
-
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
 dataconnect/
-
-### Personal Notes & Internal Documentation ###
 CONCEPTS.md
 
-### Compiled Java & Generated Files ###
-*.class
-*.jar
-*.war
-*.ear
-*.zip
-
-### Logs ###
-*.log
-*.log.*
-
-### OS ###
-Thumbs.db
+# OS files
 .DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Logs
+*.log
+*.log.*
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### Gradle ###
-.gradle/
-
-### Python ###
-__pycache__/
-*.py[cod]
-*$py.class
-
-### VS Code ###
+# VS Code workspace files
 .vscode/settings.json
 .vscode/tasks.json
 .vscode/launch.json

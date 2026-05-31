@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Profile</title>
+</head>
+
+<body>
+  <h1>Mine Profile</h1>
+  <input type="text" id="mine-name" placeholder="Mine Name" />
+  <input type="radio" id="type-opencast" name="mine-type" />
+  <label for="type-opencast">Open Cast</label>
+  <input type="radio" id="type-underground" name="mine-type" />
+  <label for="type-underground">Underground</label>
+<select id="mine-state" name="mine-state">
+  <option value="">Select State</option>
+  <option value="state1">State 1</option>
+  <option value="state2">State 2</option>
+  <option value="state3">State 3</option>
+</select>
+<input type="number" id="annual-output" placeholder="Annual Output (metric tons)" />
+<input type="number" id="forest-area" placeholder="Forest Area (hectares)" />
+<button id="save-profile">Save Profile</button>
+<p id="profile-status"></p>
+<p id=""contact-info" placeholder="Contact Information"></p>
+
+<script src="../js/mine-profile.js"></script>
+</body>
+</html>

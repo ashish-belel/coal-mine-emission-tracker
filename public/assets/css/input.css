@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* custom styles after the import */
+@layer base {
+  :root {
+    --color-primary: #0F6E56;
+    /* ... */
+  }
+}

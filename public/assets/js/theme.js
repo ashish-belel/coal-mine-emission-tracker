@@ -8,15 +8,18 @@ function updateTheme(theme) {
   body.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
 
-  if (theme === 'dark') {
-    themeToggleBtn.classList.add('active');
-    themeToggleBtn.innerHTML = '<span class="toggle-icon">☀️</span>';
-    // logoLight.style.display = 'none';
-    logoDark.style.display = 'block';
-  } else {
-    themeToggleBtn.classList.remove('active');
-    themeToggleBtn.innerHTML = '<span class="toggle-icon">🌙</span>';
-    // logoLight.style.display = 'block';
+  if (themeToggleBtn) {
+    if (theme === 'dark') {
+      themeToggleBtn.classList.add('active');
+      themeToggleBtn.innerHTML = '<span class="toggle-icon">☀️</span>';
+    } else {
+      themeToggleBtn.classList.remove('active');
+      themeToggleBtn.innerHTML = '<span class="toggle-icon">🌙</span>';
+    }
+  }
+
+  if (logoDark) {
+    // show the dark logo when available; avoid assuming logoLight exists
     logoDark.style.display = 'block';
   }
 }
@@ -26,9 +29,11 @@ function initTheme() {
   updateTheme(defaultTheme);
 }
 
-themeToggleBtn.addEventListener('click', () => {
-  const current = body.getAttribute('data-theme') || 'light';
-  updateTheme(current === 'dark' ? 'light' : 'dark');
-});
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const current = body.getAttribute('data-theme') || 'light';
+    updateTheme(current === 'dark' ? 'light' : 'dark');
+  });
+}
 
 initTheme();

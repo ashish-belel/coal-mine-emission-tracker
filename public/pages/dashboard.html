@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>GreenMine - Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    .chart-bar {
+      transition: height 0.5s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background font-ui-standard text-ui-standard h-screen overflow-hidden flex">
+  <!-- SideNavBar -->
+  <nav
+    class="bg-surface-container-low border-r border-outline-variant h-screen sticky top-0 left-0 w-64 transition-all duration-300 flex flex-col py-4 px-3 z-50 hidden md:flex"
+    id="sidebar">
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-8 px-2">
+      <div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-on-primary-container text-[18px]">factory</span>
+      </div>
+      <div class="flex flex-col overflow-hidden transition-all duration-300" id="sidebar-text">
+        <span class="font-display-lg text-display-lg font-bold text-primary truncate">GreenMine</span>
+        <span class="font-caption text-caption text-on-surface-variant truncate">Carbon Neutrality Platform</span>
+      </div>
+    </div>
+    <!-- Main Tabs -->
+    <div class="flex flex-col gap-1 flex-grow">
+      <a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors group"
+        href="./dashboard.html" title="Dashboard">
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        <span class="sidebar-label transition-opacity duration-300 font-medium">Dashboard</span>
+      </a>
+      <a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group"
+        href="./mine-profile.html" title="Mine Profile">
+        <span class="material-symbols-outlined text-[20px]">factory</span>
+        <span class="sidebar-label transition-opacity duration-300">Mine Profile</span>
+      </a>
+      <a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group"
+        href="./emission-input.html" title="Emission Input">
+        <span class="material-symbols-outlined text-[20px]">edit_note</span>
+        <span class="sidebar-label transition-opacity duration-300">Emission Input</span>
+      </a>
+      <a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group"
+        href="./reports.html" title="Reports">
+        <span class="material-symbols-outlined text-[20px]">description</span>
+        <span class="sidebar-label transition-opacity duration-300">Reports</span>
+      </a>
+      <a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group"
+        href="./results.html" title="Results">
+        <span class="material-symbols-outlined text-[20px]">analytics</span>
+        <span class="sidebar-label transition-opacity duration-300">Results</span>
+      </a>
+    </div>
+    <!-- Footer Tabs -->
+    <div class="flex flex-col gap-1 mt-auto pt-4 border-t border-outline-variant/50">
+      <a class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group"
+        href="./settings.html" title="Settings">
+        <span class="material-symbols-outlined text-[20px]">settings</span>
+        <span class="sidebar-label transition-opacity duration-300">Settings</span>
+      </a>
+      <button
+        class="flex items-center gap-3 text-on-surface-variant hover:text-on-surface px-3 py-2 scale-95 active:scale-90 hover:bg-surface-container-highest transition-colors rounded-lg group mt-2"
+        id="toggle-sidebar" title="Expand">
+        <span class="material-symbols-outlined text-[20px] transition-transform duration-300"
+          id="toggle-icon">keyboard_double_arrow_left</span>
+        <span class="sidebar-label transition-opacity duration-300">Collapse</span>
+      </button>
+    </div>
+  </nav>
+  <!-- Main Content Area -->
+  <div class="flex-grow flex flex-col min-w-0 overflow-hidden">
+    <!-- TopAppBar -->
+    <header
+      class="bg-background border-b border-outline-variant sticky top-0 z-40 w-full flex justify-between items-center h-14 px-container-padding">
+      <div class="flex items-center gap-4">
+        <button
+          class="md:hidden text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary md:hidden">GreenMine</h1>
+        <div class="hidden md:block font-headline-md text-headline-md text-on-surface">Dashboard Overview</div>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          class="signout-btn text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80 flex items-center justify-center w-8 h-8 rounded-full hover:bg-surface-container-highest">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+        </button>
+        <button
+          class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80 flex items-center justify-center w-8 h-8 rounded-full hover:bg-surface-container-highest">
+          <span class="material-symbols-outlined text-[20px]">dark_mode</span>
+        </button>
+        <button
+          class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80 flex items-center justify-center w-8 h-8 rounded-full hover:bg-surface-container-highest relative">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+        </button>
+        <div
+          class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden cursor-pointer">
+          <img alt="User Profile" class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgH9R-my7SRSPu4wXavaoLLPG4C75pj2CTdZjd-0nfsykM6zO3pUrcJm_lfhs48sERFGmbtlfv1zUwU_HkdKZrJdPp28QBkjKYEEN2RGFHSfRw2X0jCDNPOhicKn7gLwCr8Dp4wlNDGurGKiymxyCvwKE3ihuEpvcu4Zk4dimuf4sHD2mgyi0UITYJ5VCZfcAk-tZYOaxoA7qSYLhpv17te6QrA1jLpT4qaGH6YiopMFwgBIG1oaP_NPeaJJ0GTVRSuwLqI-joDE8" />
+        </div>
+      </div>
+    </header>
+    <!-- Scrollable Canvas -->
+    <main class="flex-grow overflow-y-auto p-container-padding pb-20 md:pb-container-padding">
+      <div class="max-w-[1200px] mx-auto flex flex-col gap-grid-gap">
+        <!-- Time Range & Actions -->
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-2 bg-surface-container-high p-1 rounded border border-outline-variant/50">
+            <button
+              class="px-3 py-1 rounded text-body-sm font-medium bg-surface-variant text-on-surface shadow-sm border border-outline-variant/30">1M</button>
+            <button
+              class="px-3 py-1 rounded text-body-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors">6M</button>
+            <button
+              class="px-3 py-1 rounded text-body-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors">1Y</button>
+            <button
+              class="px-3 py-1 rounded text-body-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors">ALL</button>
+          </div>
+          <button
+            class="bg-primary-container text-white px-4 h-[30px] rounded-DEFAULT text-ui-standard font-medium flex items-center gap-2 hover:bg-inverse-primary transition-colors">
+            <span class="material-symbols-outlined text-[16px]">download</span>
+            Export Report
+          </button>
+        </div>
+        <!-- Metrics Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-grid-gap">
+          <!-- Total Emissions -->
+          <div
+            class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50 relative overflow-hidden group">
+            <div
+              class="absolute -right-6 -top-6 text-surface-variant opacity-20 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">co2</span>
+            </div>
+            <div class="relative z-10">
+              <div
+                class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-stack-tight flex items-center justify-between">
+                Total Emissions
+                <span class="material-symbols-outlined text-[14px] text-error-red">trending_up</span>
+              </div>
+              <div class="flex items-end gap-2 mb-stack-standard">
+                <span class="font-stat-value text-stat-value text-on-surface text-[28px] leading-none">124.5k</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant mb-1">tCO₂e</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span
+                  class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-error-surface text-error-red font-caption text-caption">
+                  <span class="material-symbols-outlined text-[10px] mr-0.5">arrow_upward</span> 4.2%
+                </span>
+                <span class="font-caption text-caption text-on-surface-variant">vs last period</span>
+              </div>
+            </div>
+          </div>
+          <!-- Carbon Sink -->
+          <div
+            class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50 relative overflow-hidden group">
+            <div
+              class="absolute -right-6 -top-6 text-surface-variant opacity-20 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-[120px]"
+                style="font-variation-settings: 'FILL' 1;">forest</span>
+            </div>
+            <div class="relative z-10">
+              <div
+                class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-stack-tight flex items-center justify-between">
+                Carbon Sink Offset
+                <span class="material-symbols-outlined text-[14px] text-primary">trending_up</span>
+              </div>
+              <div class="flex items-end gap-2 mb-stack-standard">
+                <span class="font-stat-value text-stat-value text-on-surface text-[28px] leading-none">42.8k</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant mb-1">tCO₂e</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span
+                  class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-success-surface text-primary-container font-caption text-caption">
+                  <span class="material-symbols-outlined text-[10px] mr-0.5">arrow_upward</span> 12.5%
+                </span>
+                <span class="font-caption text-caption text-on-surface-variant">vs last period</span>
+              </div>
+            </div>
+          </div>
+          <!-- Net Gap -->
+          <div
+            class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50 relative overflow-hidden group">
+            <div
+              class="absolute -right-6 -top-6 text-surface-variant opacity-20 group-hover:scale-110 transition-transform duration-500">
+              <span class="material-symbols-outlined text-[120px]"
+                style="font-variation-settings: 'FILL' 1;">balance</span>
+            </div>
+            <div class="relative z-10">
+              <div
+                class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-stack-tight flex items-center justify-between">
+                Net Gap to Zero
+                <span class="material-symbols-outlined text-[14px] text-warning-amber">trending_down</span>
+              </div>
+              <div class="flex items-end gap-2 mb-stack-standard">
+                <span class="font-stat-value text-stat-value text-on-surface text-[28px] leading-none">81.7k</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant mb-1">tCO₂e</span>
+              </div>
+              <div class="w-full h-1.5 bg-surface-variant rounded-full overflow-hidden mt-3">
+                <div class="h-full bg-primary w-[34%] rounded-full"></div>
+              </div>
+              <div class="flex justify-between mt-1">
+                <span class="font-caption text-caption text-on-surface-variant">Current: 34% Offset</span>
+                <span class="font-caption text-caption text-on-surface-variant">Target: 100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Chart Area -->
+        <div class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50">
+          <div class="flex justify-between items-center mb-6 border-b border-outline-variant/30 pb-3">
+            <div>
+              <h2 class="font-ui-standard text-ui-standard font-medium text-on-surface">6-Month Emission Trends</h2>
+              <p class="font-caption text-caption text-on-surface-variant mt-1">Gross vs Offset Analysis</p>
+            </div>
+            <div class="flex items-center gap-4 font-caption text-caption">
+              <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-error-red/80"></div>
+                <span class="text-on-surface-variant">Gross Emissions</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-primary"></div>
+                <span class="text-on-surface-variant">Offsets</span>
+              </div>
+            </div>
+          </div>
+          <!-- Simulated Chart Canvas -->
+          <div class="h-[240px] w-full flex items-end justify-between px-2 pt-4 relative">
+            <!-- Y-Axis Grid Lines -->
+            <div class="absolute inset-0 flex flex-col justify-between pointer-events-none px-2 z-0">
+              <div class="border-b border-outline-variant/20 w-full h-0 flex items-end"><span
+                  class="absolute -left-6 -translate-y-1/2 font-caption text-caption text-on-surface-variant">30k</span>
+              </div>
+              <div class="border-b border-outline-variant/20 w-full h-0 flex items-end"><span
+                  class="absolute -left-6 -translate-y-1/2 font-caption text-caption text-on-surface-variant">20k</span>
+              </div>
+              <div class="border-b border-outline-variant/20 w-full h-0 flex items-end"><span
+                  class="absolute -left-6 -translate-y-1/2 font-caption text-caption text-on-surface-variant">10k</span>
+              </div>
+              <div class="border-b border-outline-variant/20 w-full h-0 flex items-end"><span
+                  class="absolute -left-6 -translate-y-1/2 font-caption text-caption text-on-surface-variant">0</span>
+              </div>
+            </div>
+            <!-- Bars -->
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[60%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[20%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">Jan</span>
+              <!-- Tooltip -->
+              <div
+                class="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-highest text-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 border border-outline-variant shadow-lg">
+                Gross: 18k | Offset: 6k
+              </div>
+            </div>
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[75%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[25%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">Feb</span>
+            </div>
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[65%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[30%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">Mar</span>
+            </div>
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[80%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[40%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">Apr</span>
+            </div>
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[70%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[45%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">May</span>
+            </div>
+            <div class="relative z-10 flex flex-col items-center gap-2 w-1/8 group cursor-pointer">
+              <div class="flex items-end gap-1 h-[200px]">
+                <div
+                  class="w-6 md:w-10 bg-error-red/80 rounded-t-sm h-[55%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+                <div
+                  class="w-6 md:w-10 bg-primary rounded-t-sm h-[50%] chart-bar group-hover:opacity-80 transition-opacity">
+                </div>
+              </div>
+              <span class="font-caption text-caption text-on-surface-variant mt-2">Jun</span>
+            </div>
+          </div>
+        </div>
+        <!-- Secondary Data Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-grid-gap">
+          <!-- Emission Sources Breakdown -->
+          <div class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50 flex flex-col">
+            <div
+              class="font-label-uppercase text-label-uppercase text-on-surface-variant mb-4 border-b border-outline-variant/30 pb-2">
+              Top Emission Sources</div>
+            <div class="space-y-4 flex-grow">
+              <div>
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="text-on-surface">Scope 1: Mobile Combustion</span>
+                  <span class="text-on-surface-variant">42%</span>
+                </div>
+                <div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+                  <div class="h-full bg-error-red/80 w-[42%] rounded-full"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="text-on-surface">Scope 2: Purchased Electricity</span>
+                  <span class="text-on-surface-variant">35%</span>
+                </div>
+                <div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+                  <div class="h-full bg-error-red/60 w-[35%] rounded-full"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-body-sm mb-1">
+                  <span class="text-on-surface">Scope 1: Fugitive Emissions</span>
+                  <span class="text-on-surface-variant">15%</span>
+                </div>
+                <div class="w-full h-1 bg-surface-variant rounded-full overflow-hidden">
+                  <div class="h-full bg-error-red/40 w-[15%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recent Activity Logs -->
+          <div class="bg-surface-container p-card-padding rounded-lg border border-outline-variant/50">
+            <div
+              class="font-label-uppercase text-label-uppercase text-on-surface-variant mb-4 border-b border-outline-variant/30 pb-2 flex justify-between items-center">
+              Recent Inputs
+              <button class="text-[10px] text-primary hover:underline">View All</button>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded bg-surface-variant flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[12px] text-on-surface-variant">local_gas_station</span>
+                </div>
+                <div class="flex-grow">
+                  <div class="font-body-sm text-body-sm text-on-surface">Diesel Consumption - Site Alpha</div>
+                  <div class="font-caption text-caption text-on-surface-variant">Today, 09:41 AM</div>
+                </div>
+                <div class="font-ui-standard text-ui-standard text-error-red/80">+24.5 tCO₂</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded bg-surface-variant flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[12px] text-on-surface-variant">electric_bolt</span>
+                </div>
+                <div class="flex-grow">
+                  <div class="font-body-sm text-body-sm text-on-surface">Grid Electricity - Main Plant</div>
+                  <div class="font-caption text-caption text-on-surface-variant">Yesterday, 14:22 PM</div>
+                </div>
+                <div class="font-ui-standard text-ui-standard text-error-red/80">+18.2 tCO₂</div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded bg-success-surface/10 flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[12px] text-primary">park</span>
+                </div>
+                <div class="flex-grow">
+                  <div class="font-body-sm text-body-sm text-on-surface">Reforestation Project Audit</div>
+                  <div class="font-caption text-caption text-on-surface-variant">Oct 12, 11:00 AM</div>
+                </div>
+                <div class="font-ui-standard text-ui-standard text-primary">-50.0 tCO₂</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="../assets/js/dashboard.js"></script>
+  <script>
+    // Sidebar Toggle Logic
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-sidebar');
+    const toggleIcon = document.getElementById('toggle-icon');
+    const sidebarText = document.getElementById('sidebar-text');
+    const sidebarLabels = document.querySelectorAll('.sidebar-label');
+    let isCollapsed = false;
+
+    toggleBtn.addEventListener('click', () => {
+      isCollapsed = !isCollapsed;
+      if (isCollapsed) {
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-16');
+        sidebarText.classList.add('opacity-0', 'w-0');
+        sidebarLabels.forEach(label => label.classList.add('opacity-0', 'hidden'));
+        toggleIcon.textContent = 'keyboard_double_arrow_right';
+      } else {
+        sidebar.classList.remove('w-16');
+        sidebar.classList.add('w-64');
+        sidebarText.classList.remove('opacity-0', 'w-0');
+        setTimeout(() => {
+          sidebarLabels.forEach(label => label.classList.remove('opacity-0', 'hidden'));
+        }, 150);
+        toggleIcon.textContent = 'keyboard_double_arrow_left';
+      }
+    });
+  </script>
+</body>
+
+</html>
