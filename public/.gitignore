@@ -1,4 +1,4 @@
-public/assets/js/firebase-config.js
+assets/js/firebase-config.js
 node_modules/
 *.log
 .env
