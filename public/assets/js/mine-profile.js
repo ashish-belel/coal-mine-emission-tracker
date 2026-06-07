@@ -1,10 +1,10 @@
 import { auth, db } from './firebase-config.js';
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 // Check authentication state and redirect if not authenticated
 
-document.querySelector('.signout-btn').addEventListener('click', async () => {
+document.querySelector('#logout').addEventListener('click', async () => {
   try {
     await signOut(auth);
     window.location.href = '../index.html'; // Redirect to homepage after sign out
@@ -13,22 +13,15 @@ document.querySelector('.signout-btn').addEventListener('click', async () => {
   }
 });
 
-const currentUser = onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = '../index.html'; // Redirect to homepage if not authenticated
-  }
-});
-
 document.querySelector('#save-profile').addEventListener('click', async () => {
   try {
     const mineName = document.querySelector('#mine-name').value;
-    const location = document.querySelector('#location').value;
-    const coalType = document.querySelector('#coal-type').value;
-    const productionCapacity = document.querySelector('#production-capacity').value;
-    const contactInfo = document.querySelector('#contact-info').value;
+    const mineType = document.querySelector('input[name="mine-type"]:checked').value;
+    const state = document.querySelector('#mine-state').value;
+    const annualOutput = document.querySelector('#annual-output').value;
+    const forestArea = document.querySelector('#forest-area').value;
     const user = auth.currentUser;
     if (user) {
-      const mineProfileRef = doc(db, 'mineProfiles', user.uid);
       await setDoc(doc(db, "users", user.uid, "mineProfile", "data"), {
         mineName, mineType, state, annualOutput, forestArea
       });
@@ -45,24 +38,23 @@ document.querySelector('#save-profile').addEventListener('click', async () => {
 });
 
 // Load existing mine profile data on page load
-window.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const user = auth.currentUser;
-    if (user) {
-      const mineProfileRef = doc(db, 'mineProfiles', user.uid);
-      const mineProfileSnap = await getDoc(mineProfileRef);
-      if (mineProfileSnap.exists()) {
-        const data = mineProfileSnap.data();
-        document.querySelector('#mine-name').value = data.mineName || '';
-        document.querySelector('#type-opencast').value = data.mineType || '';
-        document.querySelector('#type-underground').value = data.mineType || '';
-        document.querySelector('#mine-state').value = data.state || '';
-        document.querySelector('#annual-output').value = data.annualOutput || '';
-        document.querySelector('#forest-area').value = data.forestArea || '';
-        // document.querySelector('#contact-info').value = data.contactInfo || '';
-      }
-    }
-  } catch (error) {
-    console.error('Error loading mine profile:', error);
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = '../index.html';
+    return;
+  }
+
+  // User confirmed — now safe to load profile
+  const mineProfileRef = doc(db, "users", user.uid, "mineProfile", "data");
+  const mineProfileSnap = await getDoc(mineProfileRef);
+
+  if (mineProfileSnap.exists()) {
+    const data = mineProfileSnap.data();
+    document.querySelector('#mine-name').value = data.mineName || '';
+    document.querySelector('#type-opencast').checked = data.mineType === 'opencast';
+    document.querySelector('#type-underground').checked = data.mineType === 'underground';
+    document.querySelector('#mine-state').value = data.state || '';
+    document.querySelector('#annual-output').value = data.annualOutput || '';
+    document.querySelector('#forest-area').value = data.forestArea || '';
   }
 });
