@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emission Input</title>
+</head>
+
+<body>
+  <h1>Emission Input</h1><button id="logout">Logout</button><br>
+  <input type="number" id="excavation-volume" placeholder="Excavation Volume (cubic meters)">
+  <br><br>
+  <input type="number" id="coal-extracted" placeholder="Coal Extracted (metric tons)">
+  <br><br>
+  <input type="number" id="transport-distance" placeholder="Transport Distance (kilometers)">
+  <br><br>
+  <select id="fuel-type">
+    <option value="">Select Fuel Type</option>
+    <option value="diesel">Diesel</option>
+    <option value="electric">Electric</option>
+  </select>
+  <br><br>
+  <input type="number" id="equipment-hours" placeholder="Equipment Hours Per Month">
+  <br><br>
+  <button id="calculate-btn">Calculate Emissions</button>
+  <br><br>
+  <section id="emission-result">
+    <p id="excavation-result"></p>
+    <p id="transport-result"></p>
+    <p id="equipment-result"></p>
+    <p id="total-result"></p>
+    <p id="calc-error"></p>
+  </section>
+  <script type="module" src="../assets/js/emission-input.js"></script>
+</body>
+
+</html>
